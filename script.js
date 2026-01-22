@@ -8,7 +8,6 @@ inputBox.addEventListener("keydown", (e) => {
     }
 });
 
-
 addButton.addEventListener("click", () => {
     addTask();
 });
@@ -19,11 +18,11 @@ function addTask() {
     } else {
         let li = document.createElement("li");
         li.innerHTML = inputBox.value;
-        listContainer.appendChild(li);
+        listContainer.insertBefore(li, listContainer.firstChild);
 
         let img = document.createElement("img");
-        img.src = "delete.png";          
-        img.className = "delete";       
+        img.src = "delete.png";
+        img.className = "delete";
         li.appendChild(img);
     }
     inputBox.value = "";
