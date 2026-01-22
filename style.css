@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #c8dc92, #ed5735);
+}
+.container{
+    height: 60vh;
+    width: 22vw;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.title{color: #20417c;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 900;
+}
+.title img{
+    height: 40px;
+    margin-left: 10px;
+}   
+.input-text{
+    /* display: flex; */
+    justify-content: space-around;
+    align-items: center;
+}
+input{
+    display: flex;
+    flex: 1;
+}
+.input-text img{
+    height: 20px;
+}
