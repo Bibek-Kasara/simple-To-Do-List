@@ -2,6 +2,13 @@ let inputBox = document.querySelector("input");
 let listContainer = document.querySelector("ol");
 let addButton = document.querySelector("button");
 
+inputBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
+
+
 addButton.addEventListener("click", () => {
     addTask();
 });
@@ -14,10 +21,9 @@ function addTask() {
         li.innerHTML = inputBox.value;
         listContainer.appendChild(li);
 
-        // REVISED: create img correctly
         let img = document.createElement("img");
-        img.src = "delete.png";          // REVISED
-        img.className = "delete";        // REVISED (for CSS)
+        img.src = "delete.png";          
+        img.className = "delete";       
         li.appendChild(img);
     }
     inputBox.value = "";
@@ -25,12 +31,10 @@ function addTask() {
 
 listContainer.addEventListener("click", (e) => {
 
-    // REVISED: toggle only when clicking LI text
     if (e.target.tagName === "LI") {
         e.target.classList.toggle("checked");
     }
 
-    // REVISED: delete when clicking image
     else if (e.target.tagName === "IMG") {
         e.target.parentElement.remove();
     }
