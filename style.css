@@ -20,7 +20,7 @@ body {
 .container {
   width: 90%;         
   max-width: 400px;   
-  background-color: #ffffff;
+  background-color: #e0e2ca;
   border-radius: 20px;
 }
 
@@ -70,11 +70,11 @@ button {
 }
 
 #listContainer {
-  padding: 10px;
+  padding: 25px;
 }
 
 li {
-  list-style: none;
+  /* list-style: none; */
   user-select: none;
   cursor: pointer;
   font-size: 17px;
@@ -106,7 +106,7 @@ li.checked::before {
   background-image: url(checked.png);
 }
 
-li img.delete {
+li img.delete-btn {
   position: absolute;
   right: 10px;
   top: 50%;

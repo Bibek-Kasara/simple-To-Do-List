@@ -1,31 +1,45 @@
-let inputBox = document.querySelector("input");
+let taskInput = document.querySelector("input");
 let listContainer = document.querySelector("ol");
 let addButton = document.querySelector("button");
 
-inputBox.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        addTask();
-    }
-});
+let savedTasks = JSON.parse(localStorage.getItem("tasks")) || []
 
-addButton.addEventListener("click", () => {
-    addTask();
-});
+function displayTask() {
+    listContainer.innerHTML = ""
+
+    savedTasks.forEach((task, index) => {
+        let li = document.createElement("li")
+        li.textContent = task;
+
+        let deleteBtn = document.createElement("img");
+        deleteBtn.src = "delete.png";
+        deleteBtn.className = "delete-btn";
+
+        deleteBtn.addEventListener("click", () => {
+            deleteTask(index)
+        })
+
+        li.appendChild(deleteBtn);
+        listContainer.appendChild(li)
+    });
+}
 
 function addTask() {
-    if (inputBox.value === "") {
-        alert("You must write something!");
-    } else {
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        listContainer.insertBefore(li, listContainer.firstChild);
+    try {
+        let taskText = taskInput.value.trim();
+        if (taskText === "") {
+            throw Error(alert("Task can't be empty"))
+        }
+        savedTasks.push(taskText)
+        localStorage.setItem("tasks", JSON.stringify(savedTasks))
 
-        let img = document.createElement("img");
-        img.src = "delete.png";
-        img.className = "delete";
-        li.appendChild(img);
+        taskInput.value = ""
+        displayTask()
+
+
+    } catch (error) {
+        console.log(error.message)
     }
-    inputBox.value = "";
 }
 
 listContainer.addEventListener("click", (e) => {
@@ -39,3 +53,21 @@ listContainer.addEventListener("click", (e) => {
     }
 
 }, false);
+
+function deleteTask(index) {
+    savedTasks.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(savedTasks))
+    displayTask()
+}
+
+
+
+addButton.addEventListener("click", addTask)
+taskInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        addTask()
+    }
+})
+
+
+displayTask()
